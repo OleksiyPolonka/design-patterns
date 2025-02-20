@@ -1,0 +1,43 @@
+# Singleton Database
+
+This example demonstrates a simple implementation of the Singleton design pattern using a `Database` class in TypeScript. The Singleton pattern ensures that only one instance of a class is created throughout the application's lifecycle, providing a single point of access to a shared resource.
+
+## Overview
+
+The `Database` class implements the Singleton pattern by using a static property to store its sole instance. When a new instance is requested via the constructor, the class checks if an instance already exists. If it does, the existing instance is returned, ensuring that only one instance is ever created.
+
+
+### Code Example
+
+```typescript
+class Database {
+  data: any;
+  static instance: Database | null = null;
+
+  constructor(data: any) {
+    // If an instance already exists, return it
+    if (Database.instance != null) {
+      return Database.instance;
+    }
+
+    // Otherwise, assign the new instance and initialize data
+    Database.instance = this;
+    this.data = data;
+  }
+
+  // Method to retrieve the stored data
+  getData() {
+    return this.data;
+  }
+
+}
+// First instantiation with initial data
+const db1 = new Database({ users: [] });
+console.log(db1.getData()); // Output: { users: [] }
+
+// Attempt to create a new instance with different data
+const db2 = new Database({ users: [{ id: 1, name: 'Alice' }] });
+console.log(db2.getData()); // Output: { users: [] } - db2 is the same instance as db1
+
+// Both db1 and db2 refer to the same singleton instance
+console.log(db1 === db2); // Output: true

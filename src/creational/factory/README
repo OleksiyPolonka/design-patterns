@@ -1,0 +1,3 @@
+# Factory Pattern
+
+The Factory Pattern is a creational design pattern that encapsulates object creation. It provides a centralized location to instantiate objects, allowing the system to decide which class to instantiate based on given parameters. This pattern promotes loose coupling by separating object creation from the client code.
